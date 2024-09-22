@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/06/05 13:58:24.000.140,=D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/06/05 13:59:07.000.706,D:\Projetos\Clinica\UnitPrincipal.pas=D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/06/05 13:59:07.000.706,D:\Projetos\Clinica\UnitPrincipal.dfm=D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2021/06/05 13:59:23.000.830,D:\Projetos\Clinica\Clinica.dproj=D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2021/06/06 00:00:57.000.514,=D:\Projetos\Clinica\Unit2.pas</Transaction>
+    <Transaction>2021/06/06 00:01:29.000.529,D:\Projetos\Clinica\UnitCadpaciente.pas=D:\Projetos\Clinica\Unit2.pas</Transaction>
+    <Transaction>2021/06/06 00:01:29.000.529,D:\Projetos\Clinica\UnitCadpaciente.dfm=D:\Projetos\Clinica\Unit2.dfm</Transaction>
+    <Transaction>2021/06/06 00:01:42.000.575,=D:\Projetos\Clinica\Unit3.pas</Transaction>
+    <Transaction>2021/06/06 00:02:01.000.429,D:\Projetos\Clinica\UnitCadAgendamentos.pas=D:\Projetos\Clinica\Unit3.pas</Transaction>
+    <Transaction>2021/06/06 00:02:01.000.429,D:\Projetos\Clinica\UnitCadAgendamentos.dfm=D:\Projetos\Clinica\Unit3.dfm</Transaction>
+    <Transaction>2021/06/06 00:27:12.000.214,=D:\Projetos\Clinica\Unit1.pas</Transaction>
+    <Transaction>2021/06/06 00:34:47.000.288,D:\Projetos\Clinica\UnitDM.dfm=D:\Projetos\Clinica\Unit1.dfm</Transaction>
+    <Transaction>2021/06/06 00:34:47.000.288,D:\Projetos\Clinica\UnitDM.pas=D:\Projetos\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/09/05 21:51:02.000.319,=C:\Projects\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/09/05 21:51:46.000.921,C:\Projects\Clinica\src\Connection.pas=C:\Projects\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/09/05 22:10:56.000.580,=C:\Projects\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/09/05 22:24:18.000.295,=C:\Projects\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/09/05 22:24:55.000.460,C:\Projects\Clinica\src\Pessoa.pas=C:\Projects\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/09/07 21:57:28.000.849,C:\Projects\Clinica\src\Connection.pas=C:\Projects\Clinica\src\UConexao.pas</Transaction>
+    <Transaction>2024/09/15 02:04:04.000.569,C:\Projects\Clinica\UnitDM.pas=</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="src"/>
+    <File Path="src\Pessoa.pas"/>
+    <File Path="src\UConexao.pas"/>
+    <File Path="UnitCadAgendamentos.pas"/>
+    <File Path="UnitCadAgendamentos.dfm"/>
+    <File Path="UnitCadpaciente.pas"/>
+    <File Path="UnitCadpaciente.dfm"/>
+    <File Path="UnitPrincipal.pas"/>
+    <File Path="UnitPrincipal.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>
