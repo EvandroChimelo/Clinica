@@ -94,15 +94,12 @@ begin
     //Configura a query
     FDQuery.Connection := GetConnection;
     FDQuery.SQL.Text :=  'INSERT INTO paciente (nome, telefone, cpf) VALUES (:Nome, :Telefone, :CPF) RETURNING gid';
-
     FDQuery.ParamByName('CPF').AsString := FCPF;
     FDQuery.ParamByName('Nome').AsString := FNome;
     FDQuery.ParamByName('Telefone').AsString := FTelefone;
 
-
     //Execute a query
     FDQuery.Open;
-
 
     // Verificar se o campo 'gid' não está vazio
     if not FDQuery.FieldByName('gid').IsNull then

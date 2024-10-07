@@ -73,7 +73,10 @@ end;
 
 function TConnection.GetConnection: TFDConnection;
 begin
-  Result := FConnection;
+  if Assigned(FConnection) then
+      Result := FConnection
+    else
+      raise Exception.Create('Conexão não criada ou já liberada');
 end;
 
 end.

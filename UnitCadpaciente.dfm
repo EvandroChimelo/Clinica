@@ -4,8 +4,8 @@ object FormCadPaciente: TFormCadPaciente
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Cadastro de Pacientes'
-  ClientHeight = 520
-  ClientWidth = 753
+  ClientHeight = 519
+  ClientWidth = 749
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +13,8 @@ object FormCadPaciente: TFormCadPaciente
   Font.Name = 'Tahoma'
   Font.Style = []
   Position = poScreenCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
   TextHeight = 13
   object Label2: TLabel
     Left = 24
@@ -65,11 +67,10 @@ object FormCadPaciente: TFormCadPaciente
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 753
+    Width = 749
     Height = 105
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 749
     object Label1: TLabel
       Left = 16
       Top = 24
@@ -108,17 +109,17 @@ object FormCadPaciente: TFormCadPaciente
       end
       item
         Expanded = False
+        FieldName = 'cpf'
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'telefone'
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'datacadastro'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'cpf'
         Visible = True
       end>
   end

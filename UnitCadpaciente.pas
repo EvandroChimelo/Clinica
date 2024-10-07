@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.DBCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, Pessoa;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, Pessoa, PacienteQuery,
+  UConexao;
 
 type
   TFormCadPaciente = class(TForm)
@@ -35,10 +36,16 @@ type
     procedure BtnEditarClick(Sender: TObject);
     procedure BtnExcluirClick(Sender: TObject);
     procedure BtnCancelarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
-    { Private declarations }
+    FPacienteQuery : TPacienteQuery;
+    FConnection : TConnection;
+    FDataSource: TDataSource;
+    procedure CarregarPaciente;
   public
-    { Public declarations }
+
+
   end;
 
 var
@@ -110,17 +117,22 @@ begin
   EdtCPF.Clear;
   EdtTelefone.Clear;
   EdtDataCadastro.Clear;
+
   // Habilita os campos para inserção
   EdtNome.Enabled := True;
   EdtCPF.Enabled := True;
   EdtTelefone.Enabled := True;
-  EdtDataCadastro.Enabled := True;
+  EdtDataCadastro.Enabled := False;
+  EdtDataCadastro.Text := DateToStr(Date);
+  EdtGid.Text := '0000';
+
   // Ajusta a visibilidade dos botões
   BtnIncluir.Enabled := False;
   BtnEditar.Enabled := False;
   BtnSalvar.Enabled := True;
   BtnExcluir.Enabled := False;
   BtnCancelar.Enabled := True;
+
   // Deixa o foco no primeiro campo de edição
   EdtCPF.SetFocus;
 
@@ -133,11 +145,9 @@ begin
   Pessoa := TPessoa.Create;
     try
       // Configurar os dados da Pessoa com base nos campos de entrada
-      Pessoa.Gid := 0;
       Pessoa.CPF := EdtCPF.Text;
       pessoa.Nome := EdtNome.Text;
       Pessoa.Telefone := EdtTelefone.Text;
-      EdtDataCadastro.Text := DateToStr(Date);
       // Salvar a Pessoa no banco de dados
       pessoa.Save;
       // Atualizar o campo EdtGid com o GID gerado pelo banco de dados
@@ -170,9 +180,40 @@ begin
     EdtGid.Text := IntToStr(Pessoa.Gid);
 end;
 
-procedure TFormCadPaciente.TxtBuscaChange(Sender: TObject);
+procedure TFormCadPaciente.CarregarPaciente;
+var
+  PacientesQuery: TPacienteQuery;
 begin
-  //dm.tbPaciente.Locate('nome', TxtBusca.Text, [loPartialKey]);
+  // Certifique-se de que a conexão já está criada
+  FPacienteQuery := FPacienteQuery.create(FConnection);
+  DBGrid1.DataSource.DataSet := FPacienteQuery.CarregarPacientes;
+end;
+
+procedure TFormCadPaciente.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  FConnection.Desconectar;
+  FreeAndNil(FPacienteQuery);
+  FreeAndNil(FDataSource);
+  FreeAndNil(FConnection);
+end;
+
+procedure TFormCadPaciente.FormCreate(Sender: TObject);
+begin
+  FConnection := TConnection.Create;
+  FConnection.Conectar;
+
+  FPacienteQuery := TPacienteQuery.Create(FConnection); // O create da Query recebe a conexão e não nil
+  FDataSource := TDataSource.Create(Self);
+  FDataSource.DataSet := FPacienteQuery.CarregarPacientes;
+  DBGrid1.DataSource := FDataSource;
+end;
+
+procedure TFormCadPaciente.TxtBuscaChange(Sender: TObject);
+var
+  PacientesQuery: TPacienteQuery;
+begin
+  PacientesQuery := TPacienteQuery.Create(FConnection);
+  DBGrid1.DataSource.DataSet := PacientesQuery.BuscarPacientepornome(TxtBusca.Text);
 end;
 
 end.
