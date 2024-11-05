@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.DBCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, Pessoa, PacienteQuery,
-  UConexao, FireDAC.Comp.Client;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, PacienteQuery, UConexao, FireDAC.Comp.Client,
+  Paciente;
 
 type
   TFormCadPaciente = class(TForm)
@@ -79,9 +79,9 @@ end;
 
 procedure TFormCadPaciente.BtnEditarClick(Sender: TObject);
 var
-  Pessoa: TPessoa;
+  Pessoa: TPaciente;
 begin
-  Pessoa := TPessoa.Create;
+  Pessoa := TPaciente.Create;
   try
     Pessoa.Gid := StrToInt(EdtGid.Text); // Captura o gid do paciente selecionado
     Pessoa.CPF := EdtCPF.Text;
@@ -97,11 +97,11 @@ end;
 
 procedure TFormCadPaciente.BtnExcluirClick(Sender: TObject);
 var
-  Pessoa: TPessoa;
+  Pessoa: TPaciente;
 begin
   if MessageDlg('Tem certeza que deseja excluir este cadastro?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
-    Pessoa := TPessoa.Create;
+    Pessoa := TPaciente.Create;
     try
       Pessoa.Gid := StrToInt(EdtGid.Text); // Captura o gid do paciente
       Pessoa.Excluir; // Chama o método de exclusão
@@ -142,9 +142,9 @@ end;
 
 procedure TFormCadPaciente.BtnSalvarClick(Sender: TObject);
 var
-  Pessoa: TPessoa;
+  Pessoa: TPaciente;
 begin
-  Pessoa := TPessoa.Create;
+  Pessoa := TPaciente.Create;
     try
       // Configurar os dados da Pessoa com base nos campos de entrada
       Pessoa.CPF := EdtCPF.Text;
