@@ -15,7 +15,8 @@ type
       Destructor Destroy; override;
       function CarregarPacientes: TFDQuery;
       function BuscarPacientepornome(const Nome: string):TFDQuery;
-       end;
+
+    end;
 implementation
 
 { TPacoenteQuery }

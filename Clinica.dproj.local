@@ -2,33 +2,39 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2021/06/05 13:58:24.000.140,=D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/06/05 13:59:07.000.706,D:\Projetos\Clinica\UnitPrincipal.pas=D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/06/05 13:59:07.000.706,D:\Projetos\Clinica\UnitPrincipal.dfm=D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2021/06/05 13:59:23.000.830,D:\Projetos\Clinica\Clinica.dproj=D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2021/06/05 13:59:07.000.706,D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projetos\Clinica\UnitPrincipal.dfm</Transaction>
+    <Transaction>2021/06/05 13:59:07.000.706,D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Unit1.pas=D:\Projetos\Clinica\UnitPrincipal.pas</Transaction>
+    <Transaction>2021/06/05 13:59:23.000.830,D:\Users\Administrador\Documentos\Embarcadero\Studio\Projects\Project1.dproj=D:\Projetos\Clinica\Clinica.dproj</Transaction>
     <Transaction>2021/06/06 00:00:57.000.514,=D:\Projetos\Clinica\Unit2.pas</Transaction>
-    <Transaction>2021/06/06 00:01:29.000.529,D:\Projetos\Clinica\UnitCadpaciente.pas=D:\Projetos\Clinica\Unit2.pas</Transaction>
-    <Transaction>2021/06/06 00:01:29.000.529,D:\Projetos\Clinica\UnitCadpaciente.dfm=D:\Projetos\Clinica\Unit2.dfm</Transaction>
+    <Transaction>2021/06/06 00:01:29.000.529,D:\Projetos\Clinica\Unit2.dfm=D:\Projetos\Clinica\UnitCadpaciente.dfm</Transaction>
+    <Transaction>2021/06/06 00:01:29.000.529,D:\Projetos\Clinica\Unit2.pas=D:\Projetos\Clinica\UnitCadpaciente.pas</Transaction>
     <Transaction>2021/06/06 00:01:42.000.575,=D:\Projetos\Clinica\Unit3.pas</Transaction>
-    <Transaction>2021/06/06 00:02:01.000.429,D:\Projetos\Clinica\UnitCadAgendamentos.pas=D:\Projetos\Clinica\Unit3.pas</Transaction>
-    <Transaction>2021/06/06 00:02:01.000.429,D:\Projetos\Clinica\UnitCadAgendamentos.dfm=D:\Projetos\Clinica\Unit3.dfm</Transaction>
+    <Transaction>2021/06/06 00:02:01.000.429,D:\Projetos\Clinica\Unit3.pas=D:\Projetos\Clinica\UnitCadAgendamentos.pas</Transaction>
+    <Transaction>2021/06/06 00:02:01.000.429,D:\Projetos\Clinica\Unit3.dfm=D:\Projetos\Clinica\UnitCadAgendamentos.dfm</Transaction>
     <Transaction>2021/06/06 00:27:12.000.214,=D:\Projetos\Clinica\Unit1.pas</Transaction>
-    <Transaction>2021/06/06 00:34:47.000.288,D:\Projetos\Clinica\UnitDM.pas=D:\Projetos\Clinica\Unit1.pas</Transaction>
-    <Transaction>2021/06/06 00:34:47.000.288,D:\Projetos\Clinica\UnitDM.dfm=D:\Projetos\Clinica\Unit1.dfm</Transaction>
+    <Transaction>2021/06/06 00:34:47.000.288,D:\Projetos\Clinica\Unit1.dfm=D:\Projetos\Clinica\UnitDM.dfm</Transaction>
+    <Transaction>2021/06/06 00:34:47.000.288,D:\Projetos\Clinica\Unit1.pas=D:\Projetos\Clinica\UnitDM.pas</Transaction>
     <Transaction>2024/09/05 21:51:02.000.319,=C:\Projects\Clinica\Unit1.pas</Transaction>
-    <Transaction>2024/09/05 21:51:46.000.921,C:\Projects\Clinica\src\Connection.pas=C:\Projects\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/09/05 21:51:46.000.921,C:\Projects\Clinica\Unit1.pas=C:\Projects\Clinica\src\Connection.pas</Transaction>
     <Transaction>2024/09/05 22:10:56.000.580,=C:\Projects\Clinica\Unit1.pas</Transaction>
     <Transaction>2024/09/05 22:24:18.000.295,=C:\Projects\Clinica\Unit1.pas</Transaction>
-    <Transaction>2024/09/05 22:24:55.000.460,C:\Projects\Clinica\src\Pessoa.pas=C:\Projects\Clinica\Unit1.pas</Transaction>
-    <Transaction>2024/09/07 21:57:28.000.849,C:\Projects\Clinica\src\Connection.pas=C:\Projects\Clinica\src\UConexao.pas</Transaction>
+    <Transaction>2024/09/05 22:24:55.000.460,C:\Projects\Clinica\Unit1.pas=C:\Projects\Clinica\src\Pessoa.pas</Transaction>
+    <Transaction>2024/09/07 21:57:28.000.849,C:\Projects\Clinica\src\UConexao.pas=C:\Projects\Clinica\src\Connection.pas</Transaction>
     <Transaction>2024/09/15 02:04:04.000.569,C:\Projects\Clinica\UnitDM.pas=</Transaction>
     <Transaction>2024/09/25 21:38:09.000.878,=C:\Projects\Clinica\Unit1.pas</Transaction>
-    <Transaction>2024/09/25 21:41:29.000.243,C:\Projects\Clinica\src\PacienteQuery.pas=C:\Projects\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/09/25 21:41:29.000.243,C:\Projects\Clinica\Unit1.pas=C:\Projects\Clinica\src\PacienteQuery.pas</Transaction>
+    <Transaction>2024/10/11 19:00:14.000.100,=C:\Projects\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/10/11 19:03:45.000.546,C:\Projects\Clinica\Unit1.pas=C:\Projects\Clinica\src\Paciente.pas</Transaction>
+    <Transaction>2024/10/19 16:56:11.000.371,=C:\Projects\Clinica\Unit1.pas</Transaction>
+    <Transaction>2024/10/19 16:58:11.000.457,C:\Projects\Clinica\src\Agendamento.pas=C:\Projects\Clinica\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="src"/>
     <File Path="src\Pessoa.pas"/>
     <File Path="src\UConexao.pas"/>
     <File Path="src\PacienteQuery.pas"/>
+    <File Path="src\Paciente.pas"/>
+    <File Path="src\Agendamento.pas"/>
     <File Path="UnitCadAgendamentos.pas"/>
     <File Path="UnitCadAgendamentos.dfm"/>
     <File Path="UnitCadpaciente.pas"/>

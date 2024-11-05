@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.DBCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, Pessoa, PacienteQuery,
-  UConexao;
+  UConexao, FireDAC.Comp.Client;
 
 type
   TFormCadPaciente = class(TForm)
@@ -38,13 +38,15 @@ type
     procedure BtnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure DBGrid1DblClick(Sender: TObject);
+
   private
     FPacienteQuery : TPacienteQuery;
     FConnection : TConnection;
     FDataSource: TDataSource;
     procedure CarregarPaciente;
   public
-
+    procedure CarregarDadosPaciente(PacienteGID : Integer);
 
   end;
 
@@ -180,6 +182,30 @@ begin
     EdtGid.Text := IntToStr(Pessoa.Gid);
 end;
 
+procedure TFormCadPaciente.CarregarDadosPaciente(PacienteGID : Integer);
+var
+  CarregaPacienteQuery: TPacienteQuery;
+begin
+  // Usando a conexão existente
+  CarregaPacienteQuery := TPacienteQuery.Create(FConnection);
+  try
+    CarregaPacienteQuery := CarregaPacienteQuery;
+    //CarregaPacienteQuery.FQuery.SQL.Text := 'SELECT gid, nome, cpf, telefone, datacadastro FROM paciente WHERE gid = :GID';
+    CarregaPacienteQuery.CarregarPacientes.ParamByName('GID').AsInteger := PacienteGID;
+    CarregaPacienteQuery.CarregarPacientes.Open;
+    if not CarregaPacienteQuery.CarregarPacientes.IsEmpty then
+    begin
+      // Carrega os dados nos campos de edição
+      EdtNome.Text := CarregaPacienteQuery.CarregarPacientes.FieldByName('nome').AsString;
+      EdtCPF.Text := CarregaPacienteQuery.CarregarPacientes.FieldByName('cpf').AsString;
+      EdtTelefone.Text := CarregaPacienteQuery.CarregarPacientes.FieldByName('telefone').AsString;
+      EdtDataCadastro.Text := CarregaPacienteQuery.CarregarPacientes.FieldByName('datacadastro').AsString;
+    end;
+  finally
+    CarregaPacienteQuery.Free;
+  end;
+end;
+
 procedure TFormCadPaciente.CarregarPaciente;
 var
   PacientesQuery: TPacienteQuery;
@@ -187,6 +213,18 @@ begin
   // Certifique-se de que a conexão já está criada
   FPacienteQuery := FPacienteQuery.create(FConnection);
   DBGrid1.DataSource.DataSet := FPacienteQuery.CarregarPacientes;
+end;
+
+procedure TFormCadPaciente.DBGrid1DblClick(Sender: TObject);
+var
+  PacienteGID : integer;
+begin
+//  //Obtém o ID do paciente da linha selecionada
+//  PacienteGID := DBGrid1.DataSource.DataSet.FieldByName('GID').AsInteger;
+//
+//  // Chama o procedimento que carrega os dados nos campos de edição
+//  CarregarPaciente(PacienteGID);
+
 end;
 
 procedure TFormCadPaciente.FormClose(Sender: TObject; var Action: TCloseAction);

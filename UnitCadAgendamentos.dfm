@@ -17,12 +17,12 @@ object FormCadAgendamentos: TFormCadAgendamentos
   object Label2: TLabel
     Left = 24
     Top = 133
-    Width = 11
+    Width = 81
     Height = 13
-    Caption = 'ID'
+    Caption = 'ID Agendamento'
   end
   object Label4: TLabel
-    Left = 80
+    Left = 128
     Top = 133
     Width = 71
     Height = 13
@@ -31,23 +31,23 @@ object FormCadAgendamentos: TFormCadAgendamentos
   object Label3: TLabel
     Left = 24
     Top = 181
-    Width = 23
+    Width = 68
     Height = 13
-    Caption = 'Data'
+    Caption = 'Data Consulta'
   end
   object Label5: TLabel
-    Left = 136
+    Left = 131
     Top = 181
-    Width = 23
+    Width = 68
     Height = 13
-    Caption = 'Hora'
+    Caption = 'Hora Consulta'
   end
   object Label6: TLabel
     Left = 24
     Top = 237
-    Width = 64
+    Width = 100
     Height = 13
-    Caption = 'Especialidade'
+    Caption = 'Especialidade M'#233'dica'
   end
   object Label7: TLabel
     Left = 24
@@ -67,9 +67,9 @@ object FormCadAgendamentos: TFormCadAgendamentos
     object Label1: TLabel
       Left = 40
       Top = 36
-      Width = 188
+      Width = 355
       Height = 33
-      Caption = 'Agendamento'
+      Caption = 'Agendamento de Consulta'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -27
@@ -77,46 +77,6 @@ object FormCadAgendamentos: TFormCadAgendamentos
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object DBNavigator1: TDBNavigator
-      Left = 368
-      Top = 10
-      Width = 290
-      Height = 61
-      TabOrder = 0
-    end
-  end
-  object txtid: TDBEdit
-    Left = 24
-    Top = 152
-    Width = 78
-    Height = 21
-    TabOrder = 1
-  end
-  object DBLookupComboBox1: TDBLookupComboBox
-    Left = 128
-    Top = 154
-    Width = 222
-    Height = 21
-    ListField = 'nome'
-    ListSource = DM.dspaciente
-    TabOrder = 2
-  end
-  object DBEdit1: TDBEdit
-    Left = 24
-    Top = 200
-    Width = 77
-    Height = 21
-    MaxLength = 10
-    TabOrder = 3
-  end
-  object DBEdit2: TDBEdit
-    Left = 136
-    Top = 200
-    Width = 92
-    Height = 21
-    DataField = 'hora'
-    MaxLength = 5
-    TabOrder = 4
   end
   object DBComboBox1: TDBComboBox
     Left = 24
@@ -127,21 +87,14 @@ object FormCadAgendamentos: TFormCadAgendamentos
       'Cadiologista'
       'Nutricionista'
       'Ortopedista')
-    TabOrder = 5
-  end
-  object DBEdit3: TDBEdit
-    Left = 24
-    Top = 312
-    Width = 113
-    Height = 21
-    TabOrder = 6
+    TabOrder = 1
   end
   object DBGrid1: TDBGrid
     Left = 392
-    Top = 181
+    Top = 141
     Width = 358
     Height = 284
-    TabOrder = 7
+    TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -161,7 +114,76 @@ object FormCadAgendamentos: TFormCadAgendamentos
       item
         Expanded = False
         FieldName = 'especialidade'
+        Width = 86
         Visible = True
       end>
+  end
+  object BtnInlcuir: TButton
+    Left = 0
+    Top = 440
+    Width = 75
+    Height = 25
+    Caption = 'Inlcuir'
+    TabOrder = 3
+  end
+  object BtnAlterar: TButton
+    Left = 81
+    Top = 440
+    Width = 75
+    Height = 25
+    Caption = 'Alterar'
+    TabOrder = 4
+  end
+  object BtnSalvar: TButton
+    Left = 162
+    Top = 440
+    Width = 75
+    Height = 25
+    Caption = 'Salvar'
+    TabOrder = 5
+  end
+  object BtnExcluir: TButton
+    Left = 243
+    Top = 440
+    Width = 75
+    Height = 25
+    Caption = 'Excluir'
+    TabOrder = 6
+  end
+  object BtnCancelar: TButton
+    Left = 648
+    Top = 440
+    Width = 75
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 7
+  end
+  object EdtGID: TEdit
+    Left = 24
+    Top = 154
+    Width = 51
+    Height = 21
+    TabOrder = 8
+  end
+  object TEdit
+    Left = 24
+    Top = 200
+    Width = 100
+    Height = 21
+    TabOrder = 9
+  end
+  object TEdit
+    Left = 130
+    Top = 200
+    Width = 121
+    Height = 21
+    TabOrder = 10
+  end
+  object TEdit
+    Left = 24
+    Top = 320
+    Width = 121
+    Height = 21
+    TabOrder = 11
   end
 end

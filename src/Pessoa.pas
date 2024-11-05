@@ -30,6 +30,7 @@ type
       procedure Alterar;
       procedure Save;
       procedure excluir;
+      procedure carregar;
 
       constructor Create; overload;
   end;
@@ -57,6 +58,14 @@ begin
     Desconectar;
   end;
 
+end;
+
+procedure TPessoa.carregar;
+var
+  FDQuery: TFDQuery;
+begin
+  Conectar;
+  
 end;
 
 constructor TPessoa.Create;

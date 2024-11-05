@@ -71,6 +71,7 @@ object FormCadPaciente: TFormCadPaciente
     Height = 105
     Align = alTop
     TabOrder = 0
+    ExplicitWidth = 745
     object Label1: TLabel
       Left = 16
       Top = 24
@@ -96,6 +97,7 @@ object FormCadPaciente: TFormCadPaciente
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = DBGrid1DblClick
     Columns = <
       item
         Expanded = False
@@ -198,6 +200,7 @@ object FormCadPaciente: TFormCadPaciente
     Width = 121
     Height = 21
     Enabled = False
+    MaxLength = 11
     TabOrder = 1
   end
   object EdtTelefone: TEdit

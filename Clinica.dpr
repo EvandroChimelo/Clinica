@@ -7,7 +7,9 @@ uses
   UnitCadAgendamentos in 'UnitCadAgendamentos.pas' {FormCadAgendamentos},
   UConexao in 'src\UConexao.pas',
   Pessoa in 'src\Pessoa.pas',
-  PacienteQuery in 'src\PacienteQuery.pas';
+  PacienteQuery in 'src\PacienteQuery.pas',
+  Paciente in 'src\Paciente.pas',
+  Agendamento in 'src\Agendamento.pas';
 
 {$R *.res}
 
