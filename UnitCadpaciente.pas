@@ -12,12 +12,12 @@ type
   TFormCadPaciente = class(TForm)
     Panel1: TPanel;
     Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
+    lbCodPaciente: TLabel;
+    lbCPFPaciente: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label7: TLabel;
-    DBGrid1: TDBGrid;
+    gridcadastropaciente: TDBGrid;
     TxtBusca: TEdit;
     Label6: TLabel;
     BtnSalvar: TButton;
@@ -26,7 +26,7 @@ type
     BtnExcluir: TButton;
     BtnCancelar: TButton;
     EdtNome: TEdit;
-    EdtGid: TEdit;
+    edtGid: TEdit;
     EdtCPF: TEdit;
     EdtTelefone: TEdit;
     EdtDataCadastro: TEdit;
@@ -38,7 +38,8 @@ type
     procedure BtnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure DBGrid1DblClick(Sender: TObject);
+    procedure gridcadastropacienteDblClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 
   private
     FPacienteQuery : TPacienteQuery;
@@ -80,18 +81,48 @@ end;
 procedure TFormCadPaciente.BtnEditarClick(Sender: TObject);
 var
   Pessoa: TPaciente;
+  GIDSelecionado: Integer;
 begin
-  Pessoa := TPaciente.Create;
-  try
-    Pessoa.Gid := StrToInt(EdtGid.Text); // Captura o gid do paciente selecionado
-    Pessoa.CPF := EdtCPF.Text;
-    Pessoa.Nome := EdtNome.Text;
-    Pessoa.Telefone := EdtTelefone.Text;
-    Pessoa.Alterar; // Chama o método para alterar o cadastro no banco
-    ShowMessage('Dados atualizados com sucesso!');
-  finally
-    Pessoa.Free;
+  // Verifica se há um registro selecionado no DBGrid
+    if not gridcadastropaciente.DataSource.DataSet.IsEmpty then
+    begin
+       // Pessoa := TPaciente.Create;
+    // Captura o GID do paciente selecionado
+      GIDSelecionado := gridcadastropaciente.DataSource.DataSet.FieldByName('GID').AsInteger;
+
+      // Exibe o GID capturado no campo EdtGid (opcional)
+      EdtGid.Text := IntToStr(GIDSelecionado);
+
+      // Carrega os dados do paciente nos campos de edição
+    CarregarDadosPaciente(GIDSelecionado);
+
+      // Habilita os campos para edição
+      EdtNome.Enabled := True;
+      EdtTelefone.Enabled := True;
+      EdtCPF.Enabled := True;
+      EdtDataCadastro.Enabled := False; // Data geralmente não é editável
+
+      // Ajusta a visibilidade dos botões
+      BtnSalvar.Enabled := True;
+      BtnCancelar.Enabled := True;
+      BtnIncluir.Enabled := False;
+      BtnExcluir.Enabled := False;
+      BtnEditar.Enabled := False;
+
+      // Foco no primeiro campo editável
+      EdtNome.SetFocus;
+  end
+  else
+  begin
+    ShowMessage('Nenhum registro selecionado para edição.');
   end;
+
+       //.Gid := StrToInt(EdtGid.Text); // Captura o gid do paciente selecionado
+       //.CPF := EdtCPF.Text;
+       //.Nome := EdtNome.Text;
+       //.Telefone := EdtTelefone.Text;
+       //.Alterar; // Chama o método para alterar o cadastro no banco
+       //ShowMessage('Dados atualizados com sucesso!');
 
 end;
 
@@ -189,11 +220,13 @@ begin
   // Usando a conexão existente
   CarregaPacienteQuery := TPacienteQuery.Create(FConnection);
   try
-    CarregaPacienteQuery := CarregaPacienteQuery;
-    //CarregaPacienteQuery.FQuery.SQL.Text := 'SELECT gid, nome, cpf, telefone, datacadastro FROM paciente WHERE gid = :GID';
-    CarregaPacienteQuery.CarregarPacientes.ParamByName('GID').AsInteger := PacienteGID;
+    CarregaPacienteQuery.GetQuery.SQL.Text := 'SELECT gid, nome, cpf, telefone, datacadastro FROM paciente WHERE gid = :GID';
+    //CarregaPacienteQuery := CarregaPacienteQuery;
+//    CarregaPacienteQuery.FQuery.SQL.Text := 'SELECT gid, nome, cpf, telefone, datacadastro FROM paciente WHERE gid = :GID';
+    CarregaPacienteQuery.GetQuery.ParamByName('GID').AsInteger := PacienteGID;
     CarregaPacienteQuery.CarregarPacientes.Open;
-    if not CarregaPacienteQuery.CarregarPacientes.IsEmpty then
+
+    if not CarregaPacienteQuery.GetQuery.IsEmpty then
     begin
       // Carrega os dados nos campos de edição
       EdtNome.Text := CarregaPacienteQuery.CarregarPacientes.FieldByName('nome').AsString;
@@ -212,10 +245,10 @@ var
 begin
   // Certifique-se de que a conexão já está criada
   FPacienteQuery := FPacienteQuery.create(FConnection);
-  DBGrid1.DataSource.DataSet := FPacienteQuery.CarregarPacientes;
+  gridcadastropaciente.DataSource.DataSet := FPacienteQuery.CarregarPacientes;
 end;
 
-procedure TFormCadPaciente.DBGrid1DblClick(Sender: TObject);
+procedure TFormCadPaciente.gridcadastropacienteDblClick(Sender: TObject);
 var
   PacienteGID : integer;
 begin
@@ -243,7 +276,16 @@ begin
   FPacienteQuery := TPacienteQuery.Create(FConnection); // O create da Query recebe a conexão e não nil
   FDataSource := TDataSource.Create(Self);
   FDataSource.DataSet := FPacienteQuery.CarregarPacientes;
-  DBGrid1.DataSource := FDataSource;
+  gridcadastropaciente.DataSource := FDataSource;
+
+end;
+
+procedure TFormCadPaciente.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  shif: TShiftState;
+begin
+     if key = VK_ESCAPE then
+      Close;
 end;
 
 procedure TFormCadPaciente.TxtBuscaChange(Sender: TObject);
@@ -251,7 +293,8 @@ var
   PacientesQuery: TPacienteQuery;
 begin
   PacientesQuery := TPacienteQuery.Create(FConnection);
-  DBGrid1.DataSource.DataSet := PacientesQuery.BuscarPacientepornome(TxtBusca.Text);
+  gridcadastropaciente.SetFocus;
+  gridcadastropaciente.DataSource.DataSet := PacientesQuery.BuscarPacientepornome(TxtBusca.Text);
 end;
 
 end.

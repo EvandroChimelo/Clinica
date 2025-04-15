@@ -29,8 +29,8 @@ type
 
       procedure Alterar; virtual;
       procedure Save; virtual;
-      procedure excluir; virtual;
-      procedure carregar; virtual;
+      procedure Excluir; virtual;
+      procedure Carregar; virtual;
 
       constructor Create; overload;
   end;
@@ -42,7 +42,7 @@ begin
 
 end;
 
-procedure TPessoa.carregar;
+procedure TPessoa.Carregar;
 begin
 
 end;
@@ -53,7 +53,7 @@ begin
 
 end;
 
-procedure TPessoa.excluir;
+procedure TPessoa.Excluir;
 begin
 
 end;

@@ -4,8 +4,8 @@ object FormCadPaciente: TFormCadPaciente
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Cadastro de Pacientes'
-  ClientHeight = 519
-  ClientWidth = 749
+  ClientHeight = 663
+  ClientWidth = 1050
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,51 +15,82 @@ object FormCadPaciente: TFormCadPaciente
   Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   TextHeight = 13
-  object Label2: TLabel
+  object lbCodPaciente: TLabel
     Left = 24
     Top = 173
-    Width = 18
-    Height = 13
-    Caption = 'GID'
+    Width = 123
+    Height = 18
+    Caption = 'Codigo do Paciente'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
-  object Label3: TLabel
+  object lbCPFPaciente: TLabel
     Left = 192
     Top = 173
-    Width = 19
-    Height = 13
+    Width = 25
+    Height = 18
     Caption = 'CPF'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label4: TLabel
     Left = 24
     Top = 229
-    Width = 75
-    Height = 13
+    Width = 105
+    Height = 18
     Caption = 'Nome Completo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label5: TLabel
     Left = 24
-    Top = 277
-    Width = 42
-    Height = 13
+    Top = 288
+    Width = 57
+    Height = 18
     Caption = 'Telefone'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label7: TLabel
     Left = 176
-    Top = 275
-    Width = 85
-    Height = 13
+    Top = 292
+    Width = 115
+    Height = 18
     Caption = 'Data de Cadastro'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label6: TLabel
-    Left = 448
-    Top = 121
-    Width = 175
-    Height = 19
+    Left = 586
+    Top = 119
+    Width = 250
+    Height = 28
     Caption = 'Buscador de Paciente'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -23
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
@@ -67,11 +98,10 @@ object FormCadPaciente: TFormCadPaciente
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 749
+    Width = 1050
     Height = 105
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 745
     object Label1: TLabel
       Left = 16
       Top = 24
@@ -86,18 +116,18 @@ object FormCadPaciente: TFormCadPaciente
       ParentFont = False
     end
   end
-  object DBGrid1: TDBGrid
-    Left = 392
-    Top = 173
-    Width = 320
-    Height = 284
+  object gridcadastropaciente: TDBGrid
+    Left = 416
+    Top = 192
+    Width = 593
+    Height = 385
     TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
-    OnDblClick = DBGrid1DblClick
+    OnDblClick = gridcadastropacienteDblClick
     Columns = <
       item
         Expanded = False
@@ -107,35 +137,39 @@ object FormCadPaciente: TFormCadPaciente
       item
         Expanded = False
         FieldName = 'nome'
+        Width = 141
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cpf'
+        Width = 109
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'telefone'
+        Width = 106
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'datacadastro'
+        Width = 94
         Visible = True
       end>
   end
   object TxtBusca: TEdit
-    Left = 392
-    Top = 146
-    Width = 320
+    Left = 416
+    Top = 165
+    Width = 593
     Height = 21
     TabOrder = 4
     OnChange = TxtBuscaChange
   end
   object BtnSalvar: TButton
-    Left = 192
-    Top = 472
+    Left = 289
+    Top = 616
     Width = 75
     Height = 25
     Caption = 'Salvar'
@@ -143,8 +177,8 @@ object FormCadPaciente: TFormCadPaciente
     OnClick = BtnSalvarClick
   end
   object BtnEditar: TButton
-    Left = 99
-    Top = 472
+    Left = 152
+    Top = 616
     Width = 75
     Height = 25
     Caption = 'Editar'
@@ -152,8 +186,8 @@ object FormCadPaciente: TFormCadPaciente
     OnClick = BtnEditarClick
   end
   object BtnIncluir: TButton
-    Left = 8
-    Top = 472
+    Left = 33
+    Top = 616
     Width = 75
     Height = 25
     Caption = 'Incluir'
@@ -161,8 +195,8 @@ object FormCadPaciente: TFormCadPaciente
     OnClick = BtnIncluirClick
   end
   object BtnExcluir: TButton
-    Left = 288
-    Top = 472
+    Left = 761
+    Top = 616
     Width = 75
     Height = 25
     Caption = 'Excluir'
@@ -170,9 +204,9 @@ object FormCadPaciente: TFormCadPaciente
     OnClick = BtnExcluirClick
   end
   object BtnCancelar: TButton
-    Left = 408
-    Top = 472
-    Width = 75
+    Left = 895
+    Top = 616
+    Width = 86
     Height = 25
     Caption = 'Cancelar'
     TabOrder = 10
@@ -186,9 +220,9 @@ object FormCadPaciente: TFormCadPaciente
     Enabled = False
     TabOrder = 2
   end
-  object EdtGid: TEdit
+  object edtGid: TEdit
     Left = 24
-    Top = 192
+    Top = 197
     Width = 121
     Height = 21
     Enabled = False
@@ -196,7 +230,7 @@ object FormCadPaciente: TFormCadPaciente
   end
   object EdtCPF: TEdit
     Left = 192
-    Top = 192
+    Top = 197
     Width = 121
     Height = 21
     Enabled = False

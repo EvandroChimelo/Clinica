@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Menus, Vcl.Imaging.jpeg;
+  Vcl.Menus, Vcl.Imaging.jpeg,
+  UnitCadpaciente, UnitCadAgendamentos, UnitCadEspecialidadesMedicas, UnitCadMedicos;
 
 type
   TFormPrincipal = class(TForm)
@@ -16,14 +17,17 @@ type
     Pacientes1: TMenuItem;
     Agendamento1: TMenuItem;
     Panel1: TPanel;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    btnEspecialidadeMedica: TBitBtn;
+    btnMedicos: TBitBtn;
     Image1: TImage;
+    btnAgendamento: TBitBtn;
+    btnPaciente: TBitBtn;
     procedure Sair1Click(Sender: TObject);
-    procedure Pacientes1Click(Sender: TObject);
+    procedure PacientesClick(Sender: TObject);
     procedure Agendamento1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
+    procedure btnMedicosClick(Sender: TObject);
+    procedure btnEspecialidadeMedicaClick(Sender: TObject);
+    procedure btnAgendamentoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,24 +41,27 @@ implementation
 
 {$R *.dfm}
 
-uses UnitCadpaciente, UnitCadAgendamentos;
-
 procedure TFormPrincipal.Agendamento1Click(Sender: TObject);
 begin
   FormCadAgendamentos.showModal;
 end;
 
-procedure TFormPrincipal.BitBtn1Click(Sender: TObject);
+procedure TFormPrincipal.btnAgendamentoClick(Sender: TObject);
 begin
-  FormCadAgendamentos.ShowModal;
+ FormCadAgendamentos.ShowModal;
 end;
 
-procedure TFormPrincipal.BitBtn2Click(Sender: TObject);
+procedure TFormPrincipal.btnEspecialidadeMedicaClick(Sender: TObject);
 begin
-  FormCadPaciente.ShowModal;
+  FormCadastrodeEspecialidadesMedica.ShowModal;
 end;
 
-procedure TFormPrincipal.Pacientes1Click(Sender: TObject);
+procedure TFormPrincipal.btnMedicosClick(Sender: TObject);
+begin
+   formCadMedicos.ShowModal;
+end;
+
+procedure TFormPrincipal.PacientesClick(Sender: TObject);
 begin
  FormCadPaciente.ShowModal;
 end;
