@@ -213,6 +213,7 @@ object formCadMedicos: TformCadMedicos
     Height = 25
     Caption = 'Cancelar'
     TabOrder = 7
+    OnClick = BtnCancelarClick
   end
   object edtNome: TEdit
     Left = 24

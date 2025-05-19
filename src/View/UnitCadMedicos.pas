@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.ExtCtrls, Medicos;
+  Vcl.DBGrids, Vcl.ExtCtrls, UMedicosModel;
 
 type
   TformCadMedicos = class(TForm)
@@ -33,6 +33,7 @@ type
     edtCRM: TEdit;
     procedure BtnIncluirClick(Sender: TObject);
     procedure BtnSalvarClick(Sender: TObject);
+    procedure BtnCancelarClick(Sender: TObject);
   private
     FMedicos: TMedicos;
   public
@@ -45,6 +46,26 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TformCadMedicos.BtnCancelarClick(Sender: TObject);
+begin
+  edtNome.Clear;
+  edtCPF.Clear;
+  edtTelefone.Clear;
+  edtDataCadastro.Clear;
+  edtCRM.Clear;
+
+  edtNome.Enabled := False;
+  edtTelefone.Enabled := False;
+  edtCPF.Enabled := False;
+  edtDataCadastro.Enabled := False;
+  edtCRM.Enabled := False;
+  BtnIncluir.Enabled := True;
+  BtnEditar.Enabled := True;
+  BtnSalvar.Enabled := False;
+  BtnExcluir.Enabled := True;
+  BtnCancelar.Enabled := False;
+end;
 
 procedure TformCadMedicos.BtnIncluirClick(Sender: TObject);
 begin
@@ -78,7 +99,21 @@ procedure TformCadMedicos.BtnSalvarClick(Sender: TObject);
 var
   FMedico: TMedicos;
 begin
-   FMedico.Salvar
+  FMedico := TMedicos.Create;
+  try
+    // Preenche os dados da tela no objeto
+    FMedicos.Nome     := edtNome.Text;
+    FMedicos.CPF      := edtCPF.Text;
+    FMedicos.Telefone := edtTelefone.Text;
+    FMedicos.CRM      := edtCRM.Text;
+
+
+    FMedico.Salvar;
+     ShowMessage('Cadastro realizado com sucesso!');
+  finally
+    FMedico.Free;
+  end;
+
 end;
 
 end.

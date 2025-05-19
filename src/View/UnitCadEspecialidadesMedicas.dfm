@@ -104,6 +104,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
     Font.Style = []
     ParentFont = False
     TabOrder = 3
+    OnClick = btnEditarClick
   end
   object btnSalvar: TButton
     Left = 240

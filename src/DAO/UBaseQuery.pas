@@ -1,17 +1,16 @@
-unit QueryBase;
+unit UBaseQuery;
 
 interface
 
 uses
-  System.SysUtils, Firedac.Comp.Client, data.DB, UConexao;
+  System.SysUtils, Firedac.Comp.Client, data.DB, UConnection;
 
 type
   TBaseQuery = class
   private
     FQuery : TFDQuery;
-    Fconnection : TConnection;
   public
-    constructor Create(AConnection: TConnection); virtual;
+    constructor Create; //(AConnection: TFDConnection);
     destructor Destroy; override;
 
     function GetQuery: TFDQuery;
@@ -22,14 +21,11 @@ implementation
 
 { TBaseQuery }
 
-constructor TBaseQuery.Create(AConnection: TConnection);
+constructor TBaseQuery.Create;//(AConnection: TFDConnection);
 begin
-  inherited Create;
-  Fconnection := AConnection;
-
   //Inicializa a TFDQuery e associa á conexão
   FQuery := TFDQuery.Create(nil);
-  FQuery.Connection := FConnection.GetConnection;
+  FQuery.Connection := TConnection.GetInstance.GetConnection;
 end;
 
 destructor TBaseQuery.Destroy;

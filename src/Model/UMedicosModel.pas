@@ -1,10 +1,11 @@
-unit Medicos;
+unit UMedicosModel;
 
 interface
 
 uses
   System.SysUtils,
-  Pessoa, MedicoQuery;
+  UPessoaModel,
+  UMedicoDAO;
 
 type
   TMedicos = class(TPessoa)
@@ -16,10 +17,10 @@ type
 
       constructor Create;
       destructor Destroy; override;
-      procedure Salvar; override;
-      procedure Excluir; override;
-      procedure Editar(AGID: Integer); override;
-      procedure Carregar(GID: Integer); override;
+      procedure Salvar;
+      procedure Excluir;
+      procedure Editar(AGID: Integer);
+      procedure Carregar(GID: Integer);
 end;
 implementation
 
@@ -30,12 +31,12 @@ end;
 
 constructor TMedicos.Create;
 begin
-
+  inherited Create;
 end;
 
 destructor TMedicos.Destroy;
 begin
-
+  FMedicoQuery.Free;
   inherited;
 end;
 
@@ -53,7 +54,15 @@ end;
 
 procedure TMedicos.Salvar;
 begin
+   // Validação básica
+  if Trim(Nome) = '' then
+    raise Exception.Create('O nome é obrigatório.');
 
+  if Trim(CPF) = '' then
+    raise Exception.Create('O CPF é obrigatório.');
+
+  // Persistência delegada à camada de dados
+  FMedicoQuery.Salvar(Nome, CPF, Telefone, CRM, Gid);
 end;
 
 end.

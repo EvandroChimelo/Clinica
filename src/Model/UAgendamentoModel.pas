@@ -1,4 +1,4 @@
-unit Agendamento;
+unit UAgendamentoModel;
 
 interface
 

@@ -1,28 +1,22 @@
-unit MedicoQuery;
+unit UMedicoDAO;
 
 interface
 
 uses
-   System.SysUtils, FireDAC.Comp.Client,
-   Pessoa,
-   QueryBase,
-   UConexao;
+   System.SysUtils,
+   FireDAC.Comp.Client,
+   UBaseQuery;
 
 type
   TMedicoQuery = Class(TBaseQuery)
-    private
-      FConexao: TConnection;
     public
       procedure Salvar(ANome, ACPF, ATelefone, ACRM: string; AGID: Integer);
-      procedure Excluir(AGID: Integer); override;
-      procedure Editar(AMedico: TMedicos); override;
-      procedure Carregar(AGID: Integer; AMedico: TMedicos);
+      procedure Excluir(AGID: Integer);
+      procedure Editar(const ANome, ACPF, ATelefone, ACRM);
+      procedure Carregar(AGID: Integer);
 
       function CarregarMedicos: TFDQuery;
       function BuscarMedicoPorNome(const Nome: string):TFDQuery;
-
-      constructor Create; overload;
-      destructor Destroy; override;
   End;
 
 implementation
@@ -37,6 +31,11 @@ begin
   Result := GetQuery;
 end;
 
+procedure TMedicoQuery.Carregar(AGID: Integer);
+begin
+
+end;
+
 function TMedicoQuery.CarregarMedicos: TFDQuery;
 begin
    GetQuery.SQL.Text := 'select gid, nome, cpf, 	telefone, crm, datacadastro from medicos';
@@ -44,7 +43,7 @@ begin
    Result := GetQuery;
 end;
 
-procedure TMedicoQuery.Editar(AGID: Integer);
+procedure TMedicoQuery.Editar(const ANome, ACPF, ATelefone, ACRM);
 begin
 
 end;
@@ -57,33 +56,28 @@ end;
 procedure TMedicoQuery.Salvar(ANome, ACPF, ATelefone, ACRM: string; AGID: Integer);
 var
   FDQuery: TFDQuery;
-  Conexao: TConnection;
-  Pessoa: TPessoa;
 begin
-  Conexao.Conectar;
   FDQuery := TFDQuery.Create(nil);
 
   try
-
     //Configura a query
-    FDQuery.Connection := Conexao.GetConnection;
     FDQuery.SQL.Text :=  'INSERT INTO medicos (nome, cpf, telefone, crm) VALUES (:Nome, :CPF, :Telefone, :CRM) RETURNING gid';
-    FDQuery.ParamByName('CPF').AsString := Pessoa.CPF;
-    FDQuery.ParamByName('Nome').AsString := Pessoa.Nome;
-    FDQuery.ParamByName('Telefone').AsString := Pessoa.Telefone;
+    FDQuery.ParamByName('CPF').AsString := ACPF;
+    FDQuery.ParamByName('Nome').AsString := ANome;
+    FDQuery.ParamByName('Telefone').AsString := ATelefone;
+    FDQuery.ParamByName('CRM').AsString := ACRM;
 
     //Execute a query
     FDQuery.Open;
 
     // Verificar se o campo 'gid' não está vazio
     if not FDQuery.FieldByName('gid').IsNull then
-      Pessoa.Gid := FDQuery.FieldByName('gid').AsInteger
+      AGID := FDQuery.FieldByName('gid').AsInteger
     else
       raise Exception.Create('Erro: GID não foi gerado pelo banco de dados.');
 
   finally
     FDQuery.Free;
-    Conexao.Desconectar;
   end;
 
  end;
