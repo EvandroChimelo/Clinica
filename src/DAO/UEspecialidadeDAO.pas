@@ -14,6 +14,7 @@ type
     function CarregarEspecialidadePorId(const AGId: Integer): TEspecialidadeModel;
     function SalvarEspecialidade(AEspecialidade: TEspecialidadeModel): Integer;
     procedure Alterar(const AGid: Integer; const ANome: String);
+    procedure Excluir(const AGid: Integer);
   end;
 
 implementation
@@ -83,6 +84,19 @@ begin
  inherited create;
 end;
 
+procedure TEspecialidadeDAO.Excluir(const AGid: Integer);
+begin
+  with GetQuery do
+    begin
+      Close;
+      SQL.Clear;
+      SQL.Text := 'DELETE FROM especialidade WHERE gid = :Gid';
+      ParamByName('GID').AsInteger := AGid;
+      ExecSQL;
+    end;
+
+end;
+
 function TEspecialidadeDAO.SalvarEspecialidade(AEspecialidade: TEspecialidadeModel): Integer;
 begin
   with GetQuery do
@@ -90,8 +104,8 @@ begin
       try
         Close;
         SQL.Clear;
-        SQL.Text := 'INSERT INTO ESPECIALIDADE (GID, NOMEESPECIALIDADE) VALUES(:GID, :NOMEESPECIALIDADE) RETURNING GID';
-        ParamByName('NOMESPECIALIDADE').AsString := AEspecialidade.NomeEspecialidade;
+        SQL.Text := 'INSERT INTO ESPECIALIDADE (NOMEESPECIALIDADE) VALUES(:NOMEESPECIALIDADE) RETURNING GID';
+        ParamByName('NOMEESPECIALIDADE').AsString := AEspecialidade.NomeEspecialidade;
 
         open;
 

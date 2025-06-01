@@ -141,6 +141,7 @@
         <DCCReference Include="src\Controller\EspecialidadeController.pas"/>
         <DCCReference Include="src\DAO\UEspecialidadeDAO.pas"/>
         <DCCReference Include="src\Model\UEspecialidadeModel.pas"/>
+        <None Include="Clinica.dpr"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -169,6 +170,12 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="5">
+                <DeployFile LocalName="Clinica.dpr" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\Clinica.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="Win32\Debug\Clinica.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">

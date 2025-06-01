@@ -35,7 +35,6 @@ implementation
 constructor TPessoa.Create;
 begin
    inherited Create;
-
 end;
 
 end.

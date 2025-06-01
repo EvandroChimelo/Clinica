@@ -29,6 +29,8 @@ type
     procedure btnIncluirClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
 
 
     private
@@ -50,6 +52,15 @@ implementation
 procedure TFormCadastrodeEspecialidadesMedica.CarregarGrid;
 begin
   FDataSource.DataSet := FEspecialidadeController.CarregarEspecialidadeMedicaParaGrid;
+end;
+
+procedure TFormCadastrodeEspecialidadesMedica.FormCreate(Sender: TObject);
+begin
+  FEspecialidadeController := TEspecialidadeController.Create; // O create da Query recebe a conexão e não nil
+  FDataSource := TDataSource.Create(Self);
+  gridEspecialidadeMedica.DataSource := FDataSource;
+  CarregarGrid;
+  LimparCamposEControlarBotoes(csNavegando);
 end;
 
 procedure TFormCadastrodeEspecialidadesMedica.btnEditarClick(Sender: TObject);
@@ -78,6 +89,31 @@ begin
     ShowMessage('Nenhum registro Selecionado');
 end;
 
+procedure TFormCadastrodeEspecialidadesMedica.btnExcluirClick(Sender: TObject);
+var
+  LGISelecionado: Integer;
+begin
+  if not FDataSource.DataSet.IsEmpty then
+    begin
+      if MessageDlg('Tem certeza que deseja excluir este cadastro?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+        begin
+          LGISelecionado := StrToIntDef(edtcodigoespecialidade.Text, 0);
+          if LGISelecionado > 0 then
+          begin
+            if FEspecialidadeController.ExcluirEspecialidade(LGISelecionado) then
+            ShowMessage('Cadastro excluído com sucesso!');
+            CarregarGrid;
+            LimparCamposEControlarBotoes(csNavegando);
+          end
+           else
+            ShowMessage('Erro ao excluir Cadastro de Especialidade.');
+        end
+        else
+          ShowMessage('Nenhum Cadastro de Especialidade selecionado ou GID inválido para exclusão.');
+    end;
+      ShowMessage('Nenhum registro selecionado para exclusão.');
+end;
+
 procedure TFormCadastrodeEspecialidadesMedica.btnIncluirClick(Sender: TObject);
 begin
   LimparCamposEControlarBotoes(csInserindo);
@@ -90,7 +126,7 @@ var
   LEspecialidade: TEspecialidadeModel;
   LGIDSalvo: Integer;
 begin
-   LEspecialidade.Create;
+   LEspecialidade := TEspecialidadeModel.Create;
    try
       LEspecialidade.GIDEspecialidade := StrToIntDef(edtcodigoespecialidade.Text, 0);
       LEspecialidade.NomeEspecialidade := edtNomeEspecialidadeMedica.Text;
@@ -134,8 +170,8 @@ begin
   BtnSalvar.Enabled := (AState = csInserindo) or (AState = csEditando);
   BtnCancelar.Enabled := (AState = csInserindo) or (AState = csEditando);
 
-  if AState = csNavegando then
-    gridEspecialidadeMedica.SetFocus;
+//  if AState = csNavegando then
+//    gridEspecialidadeMedica.SetFocus;
 end;
 
 end.

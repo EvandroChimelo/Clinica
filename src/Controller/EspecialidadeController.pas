@@ -6,7 +6,8 @@ uses
   System.SysUtils,
   System.Generics.Collections,
   FireDAC.Comp.Client,
-  UEspecialidadeDAO, UEspecialidadeModel;
+  UEspecialidadeDAO,
+  UEspecialidadeModel;
 
 type
   TEspecialidadeController = class
@@ -20,6 +21,7 @@ type
      function CarregarEspecialidadeMedicaParaGrid:TFDQuery;
      function CarregarEspecialidade(AGid: Integer): TEspecialidadeModel;
      function SalvarEspecialidade(AEspecialidade: TEspecialidadeModel): Integer; // Retorna GID salvo/atualizado
+     function ExcluirEspecialidade(AGid: Integer): Boolean;
 
   end;
 
@@ -47,6 +49,19 @@ destructor TEspecialidadeController.destroy;
 begin
   FreeAndNil(FEspecialideDAO);
   inherited;
+end;
+
+function TEspecialidadeController.ExcluirEspecialidade(AGid: Integer): Boolean;
+begin
+  Try
+    FEspecialideDAO.Excluir(AGid);
+    Result := True;
+      except
+       on E: exception do
+       begin
+         Result := False;
+       end;
+  End;
 end;
 
 function TEspecialidadeController.SalvarEspecialidade(AEspecialidade: TEspecialidadeModel): Integer;

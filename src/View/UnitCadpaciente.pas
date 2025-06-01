@@ -214,8 +214,8 @@ begin
   BtnSalvar.Enabled := (AState = csInserindo) or (AState = csEditando);
   BtnCancelar.Enabled := (AState = csInserindo) or (AState = csEditando);
 
-  if AState = csNavegando then
-    gridcadastropaciente.SetFocus;
+  //if AState = csNavegando then
+  //gridcadastropaciente.SetFocus;
 end;
 
 procedure TFormCadPaciente.FormClose(Sender: TObject; var Action: TCloseAction);

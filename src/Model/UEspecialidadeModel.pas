@@ -16,16 +16,20 @@ type
     property GIDEspecialidade:Integer read FGID write FGID;
     property NomeEspecialidade:string Read FNomeEspecialidade write FNomeEspecialidade;
 
-    procedure SalvarEspecialidade;
+      constructor Create; overload;
   End;
 
 implementation
 
 { TCadastroEspecialidade }
 
-procedure TEspecialidadeModel.SalvarEspecialidade;
-begin
 
+
+{ TEspecialidadeModel }
+
+constructor TEspecialidadeModel.Create;
+begin
+  inherited Create;
 end;
 
 end.

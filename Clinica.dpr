@@ -30,15 +30,5 @@ begin
   Application.CreateForm(TFormCadastrodeEspecialidadesMedica, FormCadastrodeEspecialidadesMedica);
   Application.CreateForm(TformCadMedicos, formCadMedicos);
   Application.CreateForm(TFormCadPaciente, FormCadPaciente);
-  Application.CreateForm(TFormCadAgendamentos, FormCadAgendamentos);
-  Application.CreateForm(TFormCadastrodeEspecialidadesMedica, FormCadastrodeEspecialidadesMedica);
-  Application.CreateForm(TformCadMedicos, formCadMedicos);
-  Application.CreateForm(TFormCadPaciente, FormCadPaciente);
-  Application.CreateForm(TFormPrincipal, FormPrincipal);
-  Application.CreateForm(TFormCadAgendamentos, FormCadAgendamentos);
-  Application.CreateForm(TFormCadastrodeEspecialidadesMedica, FormCadastrodeEspecialidadesMedica);
-  Application.CreateForm(TformCadMedicos, formCadMedicos);
-  Application.CreateForm(TFormCadPaciente, FormCadPaciente);
-  Application.CreateForm(TFormPrincipal, FormPrincipal);
   Application.Run;
 end.

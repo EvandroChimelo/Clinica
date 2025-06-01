@@ -1104,8 +1104,6 @@ object FormPrincipal: TFormPrincipal
       Layout = blGlyphTop
       TabOrder = 1
       OnClick = btnEspecialidadeMedicaClick
-      ExplicitLeft = 232
-      ExplicitTop = -4
     end
     object btnMedicos: TBitBtn
       Left = 76

@@ -11,6 +11,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
   Font.Name = 'Tahoma'
   Font.Style = []
   Position = poScreenCenter
+  OnCreate = FormCreate
   TextHeight = 14
   object lblCodigoEspecialidade: TLabel
     Left = 40
@@ -43,6 +44,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
     Top = 75
     Width = 75
     Height = 22
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
@@ -66,6 +68,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
       item
         Expanded = False
         FieldName = 'gid'
+        Title.Caption = 'GID'
         Visible = True
       end
       item
@@ -73,6 +76,13 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
         FieldName = 'nomeespecialidade'
         Title.Caption = 'Nome Especialidade'
         Width = 124
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DataCadastro'
+        Title.Caption = 'Data Cadastro'
+        Width = 86
         Visible = True
       end>
   end
@@ -97,6 +107,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
     Width = 75
     Height = 25
     Caption = 'Editar'
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
@@ -112,6 +123,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
     Width = 75
     Height = 25
     Caption = 'Salvar'
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
@@ -134,6 +146,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
     Font.Style = []
     ParentFont = False
     TabOrder = 5
+    OnClick = btnExcluirClick
   end
   object btnCancelar: TButton
     Left = 726
@@ -154,6 +167,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
     Top = 147
     Width = 275
     Height = 22
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
