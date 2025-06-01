@@ -3,9 +3,11 @@ unit PacienteController;
 interface
 
 uses
-  System.SysUtils, System.Generics.Collections,
+  System.SysUtils,
+  System.Generics.Collections,
   FireDAC.Comp.Client, // Para TFDQuery como tipo de retorno para grid
-  UPacienteModel, UPacienteDAO; // Adicione UConnection se for passar a conexão explicitamente
+  UPacienteModel,
+  UPacienteDAO; // Adicione UConnection se for passar a conexão explicitamente
 
 type
   TPacienteController = class
