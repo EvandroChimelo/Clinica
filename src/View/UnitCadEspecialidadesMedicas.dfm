@@ -64,6 +64,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
     TitleFont.Height = -12
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = gridEspecialidadeMedicaDblClick
     Columns = <
       item
         Expanded = False
@@ -161,6 +162,7 @@ object FormCadastrodeEspecialidadesMedica: TFormCadastrodeEspecialidadesMedica
     Font.Style = []
     ParentFont = False
     TabOrder = 6
+    OnClick = btnCancelarClick
   end
   object edtNomeEspecialidadeMedica: TEdit
     Left = 40

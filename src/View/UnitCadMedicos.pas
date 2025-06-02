@@ -3,11 +3,27 @@ unit UnitCadMedicos;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.ExtCtrls, UMedicosModel;
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Data.DB,
+  Vcl.StdCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ExtCtrls,
+  UMedicosModel,
+  MedicoController;
 
 type
+
+  TCadastroState = (csNavegando, csInserindo, csEditando);
+
   TformCadMedicos = class(TForm)
     Label2: TLabel;
     Label3: TLabel;
@@ -17,7 +33,7 @@ type
     lblCadastroMedico: TLabel;
     Panel1: TPanel;
     lbCadastroMedico: TLabel;
-    gridcadastropaciente: TDBGrid;
+    gridCadastroMedico: TDBGrid;
     TxtBusca: TEdit;
     BtnSalvar: TButton;
     BtnEditar: TButton;
@@ -31,11 +47,14 @@ type
     edtDataCadastro: TEdit;
     lbCRM: TLabel;
     edtCRM: TEdit;
+    procedure FormCreate(Sender: TObject);
     procedure BtnIncluirClick(Sender: TObject);
-    procedure BtnSalvarClick(Sender: TObject);
-    procedure BtnCancelarClick(Sender: TObject);
   private
-    FMedicos: TMedicos;
+    FMedicoController: TMedicoController;
+    FDataSource: TDataSource;
+
+    procedure LimparCamposEControlarBotoes(AState: TCadastroState);
+    procedure CarregarGrid;
   public
     { Public declarations }
   end;
@@ -47,73 +66,58 @@ implementation
 
 {$R *.dfm}
 
-procedure TformCadMedicos.BtnCancelarClick(Sender: TObject);
-begin
-  edtNome.Clear;
-  edtCPF.Clear;
-  edtTelefone.Clear;
-  edtDataCadastro.Clear;
-  edtCRM.Clear;
-
-  edtNome.Enabled := False;
-  edtTelefone.Enabled := False;
-  edtCPF.Enabled := False;
-  edtDataCadastro.Enabled := False;
-  edtCRM.Enabled := False;
-  BtnIncluir.Enabled := True;
-  BtnEditar.Enabled := True;
-  BtnSalvar.Enabled := False;
-  BtnExcluir.Enabled := True;
-  BtnCancelar.Enabled := False;
-end;
-
 procedure TformCadMedicos.BtnIncluirClick(Sender: TObject);
 begin
-  // Limpa os campos para garantir que não haja dados antigos
-  edtNome.Clear;
-  edtCPF.Clear;
-  edtTelefone.Clear;
-  edtDataCadastro.clear;
-  edtCRM.Clear;
-
-   // Habilita os campos para inserção
-  edtCPF.Enabled := True;
-  edtNome.Enabled := True;
-  edtTelefone.Enabled := True;
-  edtDataCadastro.Enabled := False;
-  edtDataCadastro.Text := DateToStr(Date);
-  edtCRM.Enabled := True;
-
-  // Ajusta a visibilidade dos botões
-  BtnIncluir.Enabled := False;
-  BtnEditar.Enabled := False;
-  BtnSalvar.Enabled := True;
-  BtnExcluir.Enabled := False;
-  BtnCancelar.Enabled := True;
-
-  // Deixa o foco no primeiro campo de edição
-  edtCPF.SetFocus;
+  LimparCamposEControlarBotoes(csInserindo); // csInserindo = outro estado
+  EdtDataCadastro.Text := DateToStr(Date); // Data de cadastro padrão
+  edtGidMedico.Text := '0'; // Indica novo registro
+  EdtCPF.SetFocus;
 end;
 
-procedure TformCadMedicos.BtnSalvarClick(Sender: TObject);
-var
-  FMedico: TMedicos;
+procedure TformCadMedicos.CarregarGrid;
 begin
-  FMedico := TMedicos.Create;
-  try
-    // Preenche os dados da tela no objeto
-    FMedicos.Nome     := edtNome.Text;
-    FMedicos.CPF      := edtCPF.Text;
-    FMedicos.Telefone := edtTelefone.Text;
-    FMedicos.CRM      := edtCRM.Text;
+  FDataSource.DataSet := FMedicoController.CarregarMedicosParaGrid;
+end;
 
+procedure TformCadMedicos.FormCreate(Sender: TObject);
+begin
+ FMedicoController := TMedicoController.Create; // O create da Query recebe a conexão e não nil
+  FDataSource := TDataSource.Create(Self);
+  gridCadastroMedico.DataSource := FDataSource;
+  CarregarGrid;
+  LimparCamposEControlarBotoes(csNavegando);
+end;
 
-    FMedico.Salvar;
-     ShowMessage('Cadastro realizado com sucesso!');
-  finally
-    FMedico.Free;
+procedure TformCadMedicos.LimparCamposEControlarBotoes(AState: TCadastroState);
+begin
+  // Limpar campos
+  if AState <> csEditando then // Não limpa se estiver editando, pois os dados já foram carregados
+  begin
+    edtNome.Clear;
+    edtCPF.Clear;
+    edtTelefone.Clear;
+    edtDataCadastro.Clear;
+    edtGidMedico.Clear;
+    edtCRM.Clear;
   end;
 
+  // Habilitar/Desabilitar campos
+  edtNome.Enabled := (AState = csInserindo) or (AState = csEditando);
+  edtCPF.Enabled := (AState = csInserindo) or (AState = csEditando);
+  edtTelefone.Enabled := (AState = csInserindo) or (AState = csEditando);
+  edtDataCadastro.Enabled := False; // Geralmente não editável diretamente
+  edtCRM.Enabled := (AState = csInserindo) or (AState = csEditando);
+
+
+  // Controlar botões
+  BtnIncluir.Enabled := (AState = csNavegando);
+  BtnEditar.Enabled := (AState = csNavegando) and (FDataSource.DataSet.RecordCount > 0);
+  BtnExcluir.Enabled := (AState = csNavegando) and (FDataSource.DataSet.RecordCount > 0);
+  BtnSalvar.Enabled := (AState = csInserindo) or (AState = csEditando);
+  BtnCancelar.Enabled := (AState = csInserindo) or (AState = csEditando);
+
+  //if AState = csNavegando then
+  //gridcadastropaciente.SetFocus;
 end;
 
 end.

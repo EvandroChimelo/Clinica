@@ -18,7 +18,8 @@ uses
   PacienteController in 'src\Controller\PacienteController.pas',
   EspecialidadeController in 'src\Controller\EspecialidadeController.pas',
   UEspecialidadeDAO in 'src\DAO\UEspecialidadeDAO.pas',
-  UEspecialidadeModel in 'src\Model\UEspecialidadeModel.pas';
+  UEspecialidadeModel in 'src\Model\UEspecialidadeModel.pas',
+  MedicoController in 'src\Controller\MedicoController.pas';
 
 {$R *.res}
 

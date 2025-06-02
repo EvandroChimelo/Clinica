@@ -87,8 +87,8 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>3</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.3;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.3;Comments=</VerInfo_Keys>
+        <VerInfo_Build>4</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.4;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.3;Comments=</VerInfo_Keys>
         <DCC_Hints>false</DCC_Hints>
         <DCC_Warnings>false</DCC_Warnings>
     </PropertyGroup>
@@ -141,6 +141,7 @@
         <DCCReference Include="src\Controller\EspecialidadeController.pas"/>
         <DCCReference Include="src\DAO\UEspecialidadeDAO.pas"/>
         <DCCReference Include="src\Model\UEspecialidadeModel.pas"/>
+        <DCCReference Include="src\Controller\MedicoController.pas"/>
         <None Include="Clinica.dpr"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

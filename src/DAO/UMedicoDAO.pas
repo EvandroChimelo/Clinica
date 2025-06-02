@@ -8,7 +8,7 @@ uses
    UBaseQuery;
 
 type
-  TMedicoQuery = Class(TBaseQuery)
+  TMedicoDAO = Class(TBaseQuery)
     public
       procedure Salvar(ANome, ACPF, ATelefone, ACRM: string; AGID: Integer);
       procedure Excluir(AGID: Integer);
@@ -23,7 +23,7 @@ implementation
 
 { TMedicoQuery }
 
-function TMedicoQuery.BuscarMedicoPorNome(const Nome: string): TFDQuery;
+function TMedicoDAO.BuscarMedicoPorNome(const Nome: string): TFDQuery;
 begin
   GetQuery.SQL.Text := 'select gid, nome, cpf, 	telefone, crm, datacadastro from medicos WHERE nome LIKE :Nome';
   GetQuery.ParamByName('nome').AsString := '%' + Nome + '%';
@@ -31,29 +31,34 @@ begin
   Result := GetQuery;
 end;
 
-procedure TMedicoQuery.Carregar(AGID: Integer);
+procedure TMedicoDAO.Carregar(AGID: Integer);
 begin
 
 end;
 
-function TMedicoQuery.CarregarMedicos: TFDQuery;
+function TMedicoDAO.CarregarMedicos: TFDQuery;
 begin
-   GetQuery.SQL.Text := 'select gid, nome, cpf, 	telefone, crm, datacadastro from medicos';
-   GetQuery.Open;
-   Result := GetQuery;
+  with GetQuery do
+  begin
+    Close;
+    sql.Clear;
+    SQL.Text := 'select gid, nome, cpf, 	telefone, crm, datacadastro from medicos';
+    Open;
+  end;
+    Result := GetQuery;
 end;
 
-procedure TMedicoQuery.Editar(const ANome, ACPF, ATelefone, ACRM);
+procedure TMedicoDAO.Editar(const ANome, ACPF, ATelefone, ACRM);
 begin
 
 end;
 
-procedure TMedicoQuery.Excluir(AGID: Integer);
+procedure TMedicoDAO.Excluir(AGID: Integer);
 begin
 
 end;
 
-procedure TMedicoQuery.Salvar(ANome, ACPF, ATelefone, ACRM: string; AGID: Integer);
+procedure TMedicoDAO.Salvar(ANome, ACPF, ATelefone, ACRM: string; AGID: Integer);
 var
   FDQuery: TFDQuery;
 begin

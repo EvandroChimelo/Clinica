@@ -31,6 +31,8 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure gridEspecialidadeMedicaDblClick(Sender: TObject);
 
 
     private
@@ -60,6 +62,16 @@ begin
   FDataSource := TDataSource.Create(Self);
   gridEspecialidadeMedica.DataSource := FDataSource;
   CarregarGrid;
+  LimparCamposEControlarBotoes(csNavegando);
+end;
+
+procedure TFormCadastrodeEspecialidadesMedica.gridEspecialidadeMedicaDblClick(Sender: TObject);
+begin
+  btnEditarClick(Sender);
+end;
+
+procedure TFormCadastrodeEspecialidadesMedica.btnCancelarClick(Sender: TObject);
+begin
   LimparCamposEControlarBotoes(csNavegando);
 end;
 
@@ -97,7 +109,7 @@ begin
     begin
       if MessageDlg('Tem certeza que deseja excluir este cadastro?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
         begin
-          LGISelecionado := StrToIntDef(edtcodigoespecialidade.Text, 0);
+          LGISelecionado := gridEspecialidadeMedica.DataSource.DataSet.FieldByName('GID').AsInteger;
           if LGISelecionado > 0 then
           begin
             if FEspecialidadeController.ExcluirEspecialidade(LGISelecionado) then

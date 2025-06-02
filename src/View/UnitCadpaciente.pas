@@ -3,7 +3,12 @@ unit UnitCadpaciente;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
   Vcl.Dialogs,
@@ -116,7 +121,8 @@ begin
   begin
     if MessageDlg('Tem certeza que deseja excluir este cadastro?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     begin
-      LGIDSelecionado := StrToIntDef(EdtGid.Text, 0); // Ou pegar do grid se mais confiável
+      LGIDSelecionado := gridcadastropaciente.DataSource.DataSet.FieldByName('GID').AsInteger;
+      //LGIDSelecionado := StrToIntDef(EdtGid.Text, 0); // Ou pegar do grid se mais confiável
                                                     // Ou melhor, se estiver em modo edição, o GID já está no EdtGid
       if LGIDSelecionado > 0 then // Garante que tem um GID válido
       begin

@@ -10,6 +10,7 @@ object formCadMedicos: TformCadMedicos
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object Label2: TLabel
     Left = 24
@@ -123,12 +124,12 @@ object formCadMedicos: TformCadMedicos
       ParentFont = False
     end
   end
-  object gridcadastropaciente: TDBGrid
+  object gridCadastroMedico: TDBGrid
     Left = 375
     Top = 192
     Width = 593
     Height = 385
-    TabOrder = 1
+    TabOrder = 7
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -12
@@ -170,7 +171,7 @@ object formCadMedicos: TformCadMedicos
     Top = 165
     Width = 593
     Height = 23
-    TabOrder = 2
+    TabOrder = 8
   end
   object BtnSalvar: TButton
     Left = 289
@@ -178,8 +179,7 @@ object formCadMedicos: TformCadMedicos
     Width = 75
     Height = 25
     Caption = 'Salvar'
-    TabOrder = 3
-    OnClick = BtnSalvarClick
+    TabOrder = 5
   end
   object BtnEditar: TButton
     Left = 152
@@ -187,7 +187,7 @@ object formCadMedicos: TformCadMedicos
     Width = 75
     Height = 25
     Caption = 'Editar'
-    TabOrder = 4
+    TabOrder = 10
   end
   object BtnIncluir: TButton
     Left = 33
@@ -195,7 +195,7 @@ object formCadMedicos: TformCadMedicos
     Width = 75
     Height = 25
     Caption = 'Incluir'
-    TabOrder = 5
+    TabOrder = 11
     OnClick = BtnIncluirClick
   end
   object BtnExcluir: TButton
@@ -204,7 +204,7 @@ object formCadMedicos: TformCadMedicos
     Width = 75
     Height = 25
     Caption = 'Excluir'
-    TabOrder = 6
+    TabOrder = 9
   end
   object BtnCancelar: TButton
     Left = 882
@@ -212,8 +212,7 @@ object formCadMedicos: TformCadMedicos
     Width = 86
     Height = 25
     Caption = 'Cancelar'
-    TabOrder = 7
-    OnClick = BtnCancelarClick
+    TabOrder = 6
   end
   object edtNome: TEdit
     Left = 24
@@ -221,7 +220,7 @@ object formCadMedicos: TformCadMedicos
     Width = 121
     Height = 23
     Enabled = False
-    TabOrder = 8
+    TabOrder = 2
   end
   object edtGidMedico: TEdit
     Left = 24
@@ -229,16 +228,16 @@ object formCadMedicos: TformCadMedicos
     Width = 121
     Height = 23
     Enabled = False
-    TabOrder = 9
+    TabOrder = 12
   end
   object edtCPF: TEdit
     Left = 192
-    Top = 192
+    Top = 197
     Width = 121
     Height = 23
     Enabled = False
     MaxLength = 11
-    TabOrder = 10
+    TabOrder = 1
   end
   object edtTelefone: TEdit
     Left = 24
@@ -246,7 +245,7 @@ object formCadMedicos: TformCadMedicos
     Width = 121
     Height = 23
     Enabled = False
-    TabOrder = 11
+    TabOrder = 3
   end
   object edtDataCadastro: TEdit
     Left = 176
@@ -254,7 +253,7 @@ object formCadMedicos: TformCadMedicos
     Width = 121
     Height = 23
     Enabled = False
-    TabOrder = 12
+    TabOrder = 13
   end
   object edtCRM: TEdit
     Left = 24
@@ -263,6 +262,6 @@ object formCadMedicos: TformCadMedicos
     Height = 23
     Enabled = False
     MaxLength = 11
-    TabOrder = 13
+    TabOrder = 4
   end
 end
